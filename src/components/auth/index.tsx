@@ -9,10 +9,6 @@ import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
 
-
-
-
-
 const AuthComponent:React.FC = ():JSX.Element => {
     const navigate=useNavigate()
     const location = useLocation()
@@ -81,6 +77,7 @@ const AuthComponent:React.FC = ():JSX.Element => {
 
             }
             catch (err){
+                console.log(e)
                 alert(err)
             }
 
