@@ -7,7 +7,7 @@ import {useAuth} from "../hook";
     const auth = useAuth()
 
     return(
-        auth?<Outlet />:<Navigate to='login' />
+         auth?<Outlet />:<Navigate to='login' />
     )
 }
 export default PrivateRouter

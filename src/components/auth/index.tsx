@@ -8,7 +8,6 @@ import {instance} from "../../utils/axios";
 import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
-import {Test} from "../../test";
 
 const AuthComponent:React.FC = ():JSX.Element => {
     const navigate=useNavigate()
@@ -78,7 +77,6 @@ const AuthComponent:React.FC = ():JSX.Element => {
 
             }
             catch (err){
-                console.log(Test.test)
                 alert(err)
             }
 
