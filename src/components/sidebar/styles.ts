@@ -2,9 +2,7 @@ import {makeStyles} from "@mui/styles";
 
 
 export const useStyles: any=makeStyles({
-    root_nav:{
 
-},
     logoIcon:{
         height:'50px',
         width:'50px'

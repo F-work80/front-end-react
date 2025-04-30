@@ -3,13 +3,13 @@ import {makeStyles} from "@mui/styles";
 export const useStyles=makeStyles({
     root:{
         display:'flex',
-        width:'10%'
+        width:'100%'
     },
     mainSection:{
-        width:'100%',
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'center'
+        display:'flex',
+        flexGrow:1,
+        flexDirection:'column',
+        justifyContent:'center'
     },
 
 })
