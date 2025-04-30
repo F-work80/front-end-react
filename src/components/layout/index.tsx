@@ -4,10 +4,13 @@ import TopBarComponent from "../topbar";
 import {useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
 import SideBarComponent from "../sidebar";
+import {useStyles} from "../layout/styles";
 
 const LayoutComponent= ({children}:ILayout) => {
     const location = useLocation()
     const isNotMobile=useMediaQuery('(min-wight:600px)')
+
+    const classes=useStyles()
 
     const[isOpen,setIsOpen]=useState(true)
 
@@ -19,7 +22,8 @@ const LayoutComponent= ({children}:ILayout) => {
                    </>
                ):
              (   <Box display={isNotMobile?('flex'):('block')}
-                 width='100%'
+                      width='100%'
+                      justifyContent='space-between'
                       height='100%'
                       // bgcolor='grey'
                  >
@@ -29,7 +33,7 @@ const LayoutComponent= ({children}:ILayout) => {
                          isOpen={isOpen}
                          setIsOpen={setIsOpen}
                      />
-                     <Box >
+                     <Box className={classes.mainSection}>
                          <TopBarComponent/>
                          {children}
                      </Box>
