@@ -48,7 +48,9 @@ const SideBarComponent = (props:any) => {
 
 
     return (
-            <Box component='nav'>
+            <Box component='nav'
+
+            >
                 {isOpen && (
                     <Drawer
                         anchor='left'
@@ -73,7 +75,7 @@ const SideBarComponent = (props:any) => {
                                 borderBottom:`1px solid ${theme.palette.mode==='light'?
                                     '#3c3c3c':
                                     '#ffffff'
-                                }`
+                                }`,
                             }}
                         >
                             <Box width='100%'

@@ -1,16 +1,23 @@
 import {makeStyles} from "@mui/styles";
+import {hover} from "@testing-library/user-event/dist/hover";
 
 export const useStyle = makeStyles(()=>{
 
     return({
+        menuItem:{
+            cursor:'pointer',
+            marginRight:'20px'
+        },
+        appbar:{
+            borderBottom:'1px solid grey',
+            boxShadow:'none !important'
+        },
+        toolbar:{
+          justifyContent:'space-between',
+            padding:'25px 45px'
+        },
         userText:{
-            display:'flex',
-            justifyContent:'center',
             alignItems:'center',
-            backgroundColor:'lightblue',
-            width:'60%',
-            minWidth:'30%',
-            borderRadius:'45%'
         },
         search:{
             '&:hover':{
@@ -25,7 +32,7 @@ export const useStyle = makeStyles(()=>{
         mainBox:{
             padding:'15px 10px 25px 10px',
 
-            border:'1px solid grey',
+            borderBottom:'1px solid grey',
             display:'flex',
             justifyContent:'space-between',
             px:'32px',
