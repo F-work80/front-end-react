@@ -8,11 +8,21 @@ import {instance} from "../../utils/axios";
 import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
+import {useForm} from "react-hook-form";
 
 const AuthComponent:React.FC = ():JSX.Element => {
     const navigate=useNavigate()
     const location = useLocation()
     const dispatch = useAppDispatch()
+    const{
+        register,
+        formState:{
+            errors
+        },
+        handleSubmit,
+
+       }=useForm()
+
 
     const switchLogOrReg=()=>{
         if (location.pathname==='/register'){ navigate('/login')}
@@ -26,53 +36,46 @@ const AuthComponent:React.FC = ():JSX.Element => {
     const [name,setName]= useState('')
     const [user,setUser]= useState('')
 
-    const formHandler = async (e:any)=>{
-        e.preventDefault()
+
+    const formHandler = async (data:any)=>{
+
+        // console.log(data.pass)
+        // console.log(data.email)
 
         if(location.pathname==='/login'){
             try {
                 const userData={
-                    userEmail:e.target[0].value,
-                    userPass:e.target[2].value
+                    userEmail:data.email,
+                    userPass:data.pass
                 }
                 const user=await instance.post('/auth/login',userData)
 
                 await dispatch(login(user.data))
                 navigate('/')
             }
-            catch (e){
-                return e
+            catch (e:any){
+                alert(e.response.data.message)
             }
 
         }
         if(location.pathname==='/register'){
-            const clear=()=>{
-                e.target[0].value=''
-                e.target[2].value=''
-                e.target[4].value=''
-                e.target[6].value=''
-                e.target[8].value=''
-            }
             try {
-                if(e.target[6].value===e.target[8].value){
+                if(data.pass===data.confpass){
                     const userData={
-                        firstName:e.target[0].value,
-                        userName:e.target[2].value,
-                        userEmail:e.target[4].value,
-                        userPass:e.target[6].value
+                        firstName:data.name,
+                        userName:data.user,
+                        userEmail:data.email,
+                        userPass:data.pass
                     }
                     const user=await instance.post('/auth/registerUser',userData)
-                   clear()
+
+                    console.log(user)
                     await dispatch(login(user.data))
                     alert('Rewards you are registered !')
                     navigate('/')
-
-                    // console.log(user.data)
                 }
                 else{
                     alert(AppErrors.PussNotMutch)
-                    e.target[6].value=''
-                    e.target[8].value=''
                 }
 
             }
@@ -86,7 +89,7 @@ const AuthComponent:React.FC = ():JSX.Element => {
 
     return(
         <div className='root'>
-            <form onSubmit={formHandler} className='form'>
+            <form onSubmit={handleSubmit(formHandler)} className='form'>
                 <Box
                 display='flex'
                 justifyContent='center'
@@ -102,15 +105,14 @@ const AuthComponent:React.FC = ():JSX.Element => {
                     {location.pathname==='/login'?
                         <Login
                             switchStat={switchLogOrReg}
-                            setEmail={setEmail}
-                            setPass={setPass} />:
+                            register={register}
+                            errors={errors}
+                        />:
                         location.pathname==='/register'?
                             <Register
                                 switchStat={switchLogOrReg}
-                                setEmail={setEmail}
-                                setPass={setPass}
-                                setName={setName}
-                                setUser={setUser}
+                                register={register}
+                                errors={errors}
                             />:
                             null}
                 </Box>
