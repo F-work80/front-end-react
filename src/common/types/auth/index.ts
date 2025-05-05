@@ -1,16 +1,24 @@
-export interface IPropsLogin {
-    setPass: (value: string) => void,
-    setEmail: (vlaue1: string) => void,
-    switchStat?: () => void
+import {FieldErrors, FieldValues, UseFormRegister} from "react-hook-form";
+
+export interface IPropsLogin <
+    TFieldValues extends FieldValues = FieldValues,
+    TContext = any,
+    TTransformedValues extends FieldValues | undefined = undefined,
+>{
+    switchStat?: () => void,
+    register:  UseFormRegister<TFieldValues>,
+    errors:  FieldErrors<TFieldValues>
 }
 
-export interface IPropsRegistration {
+export interface IPropsRegistration <
+    TFieldValues extends FieldValues = FieldValues,
+    TContext = any,
+    TTransformedValues extends FieldValues | undefined = undefined,
+>
+{
     switchStat: () => void,
-    setPass: (value: string) => void,
-    setEmail: (vlaue1: string) => void,
-    setName: (value2: string) => void,
-    setUser: (vlaue3: string) => void,
-    cngStat?: () => void
+    register:  UseFormRegister<TFieldValues>,
+    errors: FieldErrors<TFieldValues>
 }
 
 export interface IUserDataState{

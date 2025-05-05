@@ -28,7 +28,7 @@ const LayoutComponent= () => {
                  >
                      <SideBarComponent
                          isNotMobile={isNotMobile}
-                         drawerWight='200px'
+                         drawerWight='250px'
                          isOpen={isOpen}
                          setIsOpen={setIsOpen}
                      />
